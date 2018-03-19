@@ -15,9 +15,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // connect mogo DB
-mongoose.connect('mongodb+srv://darren:' + process.env.MONGO_PW + '@cluster0-pjrp3.mongodb.net/test',{
-    useMongoClient:true
-});
+mongoose.connect('mongodb://darren:'+process.env.MONGO_DB+
+'@cluster0-shard-00-00-pjrp3.mongodb.net:27017,cluster0-shard-00-01-pjrp3.mongodb.net:27017,cluster0-shard-00-02-pjrp3.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin');
 
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
